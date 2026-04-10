@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# StaySmart
+
+StaySmart is a production-minded MVP for an admin-managed multi-category
+listings platform built with Next.js App Router, TypeScript, Tailwind CSS,
+PostgreSQL, and Prisma.
+
+Current scope:
+
+- Admin-managed listings
+- Category management
+- S3 image keys stored in the database
+- Public homepage, category pages, and listing pages
+- WhatsApp click-to-chat enquiries only
 
 ## Getting Started
 
-First, run the development server:
+1. Copy the environment template:
+
+```bash
+cp .env.example .env.local
+```
+
+2. Fill in your PostgreSQL and AWS S3 values.
+
+3. Generate Prisma Client:
+
+```bash
+npm run db:generate
+```
+
+4. Apply your first migration after the database is configured:
+
+```bash
+npm run db:migrate -- --name init
+```
+
+5. Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+6. Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npm run db:generate`
+- `npm run db:migrate -- --name <migration-name>`
+- `npm run db:push`
+- `npm run db:studio`
 
-## Learn More
+## Status
 
-To learn more about Next.js, take a look at the following resources:
+The current foundation includes:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.js 16 App Router project structure
+- Prisma schema for admins, categories, listings, and listing images
+- Shared Prisma client wiring
+- Slug generation and WhatsApp link helpers
+- Admin authentication with a JWT session cookie and protected admin routes
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Next implementation steps:
 
-## Deploy on Vercel
+- Category CRUD
+- Listing CRUD and status management
+- Public category and listing routes
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Admin Auth
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Seed the first admin account after configuring `DATABASE_URL` and running the
+database migration:
+
+```bash
+npm run admin:seed -- --email admin@example.com --password strongpassword123
+```
+
+Then sign in at `http://localhost:3000/admin/login`.
