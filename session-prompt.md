@@ -3,11 +3,11 @@
 ## Session State
 
 ### Current status
-- Project is still in early foundation stage
+- Core MVP is largely implemented and now entering deployment, verification, and polish stage
 - Next.js 16 App Router scaffold is in place under `src/app`
 - Prisma 7 is configured with `prisma.config.ts`
 - Core MVP schema is defined for `Admin`, `Category`, `Listing`, and `ListingImage`
-- Shared helpers exist for slug generation and WhatsApp click-to-chat links
+- Shared helpers exist for slug generation, WhatsApp click-to-chat links, and S3 object URL generation
 
 ### Completed in this session
 - reviewed the full current codebase and local Next.js docs before changing architecture-sensitive code
@@ -20,6 +20,12 @@
 - explained the WhatsApp utility helpers and the Prisma client setup at a beginner-friendly level
 - implemented admin authentication with a JWT session cookie, login form, protected admin layout, dashboard, and logout flow
 - added a seed script for the first admin account
+- implemented admin category CRUD with list, create, edit, slug handling, and active/inactive state
+- implemented admin listing CRUD with draft/published/archived status management and category assignment
+- built public homepage, category pages, and listing detail pages backed by published listings only
+- added direct-to-S3 image uploads with signed upload URLs, listing image key persistence, and cover image selection
+- rendered uploaded S3 images on public pages and configured Next image remote patterns
+- updated README and env examples to match the deployed S3-backed flow
 
 ### Corrected / cancelled assumptions
 - this is not a resumed half-built admin system; it is still at the project foundation stage
@@ -27,14 +33,13 @@
 - do not expand scope beyond admin-managed listings, categories, S3-backed images, public pages, and WhatsApp click-to-chat
 
 ### Current task before moving on
-- organize the current work into small logical commits and push the foundation to GitHub
+- verify the completed MVP locally and prepare clean git commits and deployment setup
 
 ### Next tasks
 - finish local admin seeding verification
-- implement category CRUD
-- implement listing CRUD with draft/published/archived status management
-- build public category and listing pages
-- add S3 upload flow for listing images
+- verify S3 bucket CORS/public delivery configuration
+- prepare Vercel deployment and production environment variables
+- run end-to-end QA across admin auth, uploads, publishing, and public browsing
 
 ### Maintenance rule for future sessions
 - always update this `session-prompt.md` file before moving into the next implementation task

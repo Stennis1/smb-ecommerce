@@ -9,6 +9,7 @@ Current scope:
 - Admin-managed listings
 - Category management
 - S3 image keys stored in the database
+- Direct-to-S3 admin image uploads
 - Public homepage, category pages, and listing pages
 - WhatsApp click-to-chat enquiries only
 
@@ -21,6 +22,8 @@ cp .env.example .env.local
 ```
 
 2. Fill in your PostgreSQL and AWS S3 values.
+   `AWS_S3_PUBLIC_BASE_URL` should point to the public bucket or CDN base URL
+   used to serve uploaded listing images.
 
 3. Generate Prisma Client:
 
@@ -64,9 +67,8 @@ The current foundation includes:
 
 Next implementation steps:
 
-- Category CRUD
-- Listing CRUD and status management
-- Public category and listing routes
+- Finish local admin seeding verification
+- Production deployment and environment validation
 
 ## Admin Auth
 
