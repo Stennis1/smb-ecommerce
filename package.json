@@ -11,7 +11,8 @@
     "db:migrate": "prisma migrate dev",
     "db:push": "prisma db push",
     "db:studio": "prisma studio",
-    "admin:seed": "tsx src/scripts/seed-admin.ts"
+    "admin:seed": "tsx src/scripts/seed-admin.ts",
+    "s3:cors": "tsx src/scripts/generate-s3-cors.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1029.0",
