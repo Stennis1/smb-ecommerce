@@ -24,6 +24,8 @@ cp .env.example .env.local
 2. Fill in your PostgreSQL and AWS S3 values.
    `AWS_S3_PUBLIC_BASE_URL` should point to the public bucket or CDN base URL
    used to serve uploaded listing images.
+   `AWS_S3_ALLOWED_ORIGINS` should be a comma-separated list of browser origins
+   allowed to upload directly to S3.
 
 3. Generate Prisma Client:
 
@@ -54,6 +56,27 @@ npm run dev
 - `npm run db:migrate -- --name <migration-name>`
 - `npm run db:push`
 - `npm run db:studio`
+- `npm run s3:cors`
+
+## S3 CORS
+
+Direct browser uploads require S3 bucket CORS to match the origins that will
+use the admin interface.
+
+Generate the recommended JSON from your current env:
+
+```bash
+npm run s3:cors
+```
+
+Then copy that JSON into the S3 bucket CORS configuration in AWS.
+
+If you use local development and Vercel, `AWS_S3_ALLOWED_ORIGINS` should usually
+include:
+
+- `http://localhost:3000`
+- your production Vercel domain
+- any custom domain you use for the app
 
 ## Status
 
