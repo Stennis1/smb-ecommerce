@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { SiteFooter } from "@/components/site-footer";
 import { getS3ObjectUrl } from "@/lib/s3";
 import { buildWhatsAppLink } from "@/lib/utils";
 import { getPrismaClient } from "@/lib/prisma";
@@ -147,6 +148,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           )}
         </div>
       </section>
+      <SiteFooter />
     </main>
   );
 }
